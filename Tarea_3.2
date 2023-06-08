@@ -1,1 +1,72 @@
+def es_primo(numero):
+    if numero < 2:
+        return False
+    for i in range(2, int(numero ** 0.5) + 1):
+        if numero % i == 0:
+            return False
+    return True
 
+def factorial(numero):
+    fact = 1
+    for i in range(1, numero + 1):
+        fact *= i
+    return fact
+
+def es_palindromo(frase):
+    frase = frase.lower().replace(" ", "")
+    return frase == frase[::-1]
+
+def mostrar_menu():
+    print("---- MENÚ ----")
+    print("1. Número Primo")
+    print("2. Factorial")
+    print("3. Palíndrome")
+    print("4. Salir")
+    print()
+
+def main():
+    autor = "Tu Nombre"
+    while True:
+        mostrar_menu()
+        opcion = input("Ingrese una opción: ")
+        print()
+
+        if opcion == "1":
+            numero = int(input("Ingrese un número entre 1 y 15: "))
+            if 1 <= numero <= 15:
+                if es_primo(numero):
+                    print("El número es primo.")
+                else:
+                    print("El número no es primo.")
+            else:
+                print("Número inválido.")
+            print()
+        
+        elif opcion == "2":
+            numero = int(input("Ingrese un número positivo entre 3 y 10: "))
+            if 3 <= numero <= 10:
+                fact = factorial(numero)
+                print("El factorial de", numero, "es:", fact)
+            else:
+                print("Número inválido.")
+            print()
+        
+        elif opcion == "3":
+            frase = input("Ingrese una frase: ")
+            if es_palindromo(frase):
+                print("La frase es un palíndromo.")
+            else:
+                print("La frase no es un palíndromo.")
+            print()
+        
+        elif opcion == "4":
+            print("¡Hasta luego! Programa finalizado.")
+            print("Autor:", autor)
+            break
+        
+        else:
+            print("Opción inválida. Por favor, ingrese una opción válida.")
+            print()
+
+if __name__ == "__main__":
+    main()
