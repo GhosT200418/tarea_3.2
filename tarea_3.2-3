@@ -1,0 +1,42 @@
+def validar_digito_verificador(run):
+    
+    run = run.replace(".", "").replace("-", "")
+    
+    
+    if not run[:-1].isdigit() or not run[-1].isdigit():
+        return False
+    
+    
+    digito_verificador_ingresado = int(run[-1])
+    
+    
+    suma = 0
+    coeficiente = 2
+    
+    
+    for digito in reversed(run[:-1]):
+        suma += int(digito) * coeficiente
+        coeficiente += 1
+        if coeficiente > 7:
+            coeficiente = 2
+    
+    
+    digito_verificador_esperado = 11 - (suma % 11)
+    
+    
+    if digito_verificador_esperado == 11:
+        digito_verificador_esperado = 0
+    
+   
+    if digito_verificador_ingresado == digito_verificador_esperado:
+        return True
+    else:
+        return False
+
+
+run = input("Ingrese un RUN (sin puntos ni guiones): ")
+if validar_digito_verificador(run):
+    print("El RUN es válido.")
+else:
+    print("El RUN es inválido.")
+
